@@ -1,0 +1,157 @@
+# rooms
+in the first room   # 1
+in the second room  # 2
+.
+# objects, * marks treasures
+key   # 1
+lamp  # 2
+coin* # 3
+.
+# verbs
+take # 1
+get  # 2
+drop # 3
+examine # 4
+quit # 5
+.
+# objects initially at, 0:nowhere, -1:carried, n:room number
+1 # key
+1 # lamp
+2 # coin
+# room 1 connections
+2 # n
+1 # s
+1 # e
+1 # w
+1 # u
+1 # d
+# room 2 connections
+2 # n
+1 # s
+2 # e
+2 # w
+2 # u
+2 # d
+# 1-word
+1
+quit
+# verb-object rules
+# take
+y # syn
+2 # get
+# get key
+n
+1 # key
+y
+a # and
+1 # here
+1 # key
+n
+2 # take
+1 # key
+n
+y
+# get lamp
+n
+2 # lamp
+y
+a # and
+1 # here
+2 # lamp
+n
+2 # take
+2 # lamp
+n
+y
+# get coin
+n
+3 # coin
+y
+a # and
+1 # here
+3 # coin
+n
+2 # take
+3 # coin
+n
+n
+# drop key
+n
+1 # key
+y
+a # and
+2 # present
+1 # key
+n
+3 # drop
+1 # key
+n
+y
+# drop lamp
+n
+2 # lamp
+y
+a # and
+2 # present
+2 # lamp
+n
+3 # drop
+2 # lamp
+n
+y
+# drop coin
+n
+3 # coin
+y
+a # and
+2 # present
+3 # coin
+n
+3 # drop
+3 # coin
+n
+n
+# examine key
+n
+1 # key
+y
+a # and
+2 # present
+1 # key
+n
+7 # print
+A small iron key.
+n
+y
+# examine lamp
+n
+2 # lamp
+y
+a # and
+2 # present
+2 # lamp
+n
+7 # print
+An old bronce lamp.
+n
+y
+# examine coin
+n
+3 # coin
+y
+a # and
+2 # present
+3 # coin
+n
+7 # print
+A gold coin.
+n
+n 
+# quit
+n
+0 # coin
+n
+0 # code
+import sys; sys.exit()
+n
+n 
