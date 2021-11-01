@@ -223,8 +223,20 @@ for (nv, v) in verbs.items():
                 line = input("Which object? ")
                 rule += "(obj_loc[%d] == you or obj_loc[%d] == -1)" % (int(line), int(line))
             elif opt == "3":
-                line = input("Which flag? ")
-                rule += "(flags.get(%d, 0) != 0)" % int(line)
+                for (nf, f) in flags.items():
+                    print("%d %s" % (nf, f))
+                next = ""
+                while next not in ["y", "n"]:
+                    next = input("Some of these flags (y/n)? ")
+                if next == "y":
+                    line = input("Which one? ")
+                    f = int(line)
+                if next == "n":
+                    line = input("What is for? ")
+                    last_flag += 1
+                    flags[last_flag] = line
+                    f = last_flag
+                rule += "(flags.get(%d, 0) != 0)" % f
             elif opt == "4":
                 line = input("How many out of 100 are bad? ")
                 rule += "(random.randint(1, 100) > %d)" % int(line)
@@ -319,7 +331,7 @@ for (nv, v) in verbs.items():
                 for (nd, d) in enumerate(dirs):
                     print("%d  %s" % (nd, d))
                 dir = input("in which direction? ")
-                rule += "            conn[(%d, \"%s\")] = %d" % (r1, dirs[int(dir)], r2)    
+                rule += "            conn[(%d, \"%s\")] = %d\n" % (r1, dirs[int(dir)], r2)    
             print("")
             print("This is what you have so far:")
             print(rule)
